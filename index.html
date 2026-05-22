@@ -3,303 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cubalance - A Chaotic Physics Puzzle Challenge</title>
+    <title>Cubalance - Physics-Based Balance Puzzle</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-color: #f7f5f0;
-            --text-color: #2c3e50;
-            --accent-primary: #3498db;
-            --accent-gold: #f1c40f;
-            --accent-silver: #95a5a6;
-            --card-bg: #ffffff;
-            --border-radius: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
-
-        h1, h2, h3, .logo {
-            font-family: 'Fredoka', sans-serif;
-            font-weight: 700;
-        }
-
-        header {
-            background-color: var(--card-bg);
-            padding: 20px 40px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-		header {
-			background-color: var(--card-bg);
-			padding: 15px 40px; /* Slightly reduced padding to match an image logo */
-			box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-			display: flex;
-			justify-content: flex-start; /* Aligns the logo neatly to the left side */
-			align-items: center;
-			position: sticky;
-			top: 0;
-			z-index: 100;
-		}
-
-		.logo-container {
-			display: flex;
-			align-items: center;
-			text-decoration: none;
-		}
-
-		.site-logo {
-			height: 50px; /* Restricts height to keep the header compact */
-			width: auto;   /* Ensures the logo maintains its correct aspect ratio */
-			display: block;
-		}
-
-        .hero {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 16px;
-            color: #2c3e50;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #7f8c8d;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-            font-weight: 500;
-        }
-
-        .media-placeholder {
-            width: 100%;
-            max-width: 800px;
-            height: 450px;
-            background-color: #e2e8f0;
-            border: 4px dashed #cbd5e1;
-            border-radius: var(--border-radius);
-            margin: 0 auto 40px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 24px;
-            color: #94a3b8;
-            box-shadow: inset 0 4px 12px rgba(0,0,0,0.03);
-        }
-
-        .store-section {
-            background: linear-gradient(135deg, #34495e, #2c3e50);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-            border-radius: var(--border-radius);
-            max-width: 1000px;
-            margin: 40px auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .store-section h2 {
-            font-size: 32px;
-            margin-bottom: 12px;
-            color: var(--accent-gold);
-        }
-
-        .store-section p {
-            margin-bottom: 30px;
-            font-size: 18px;
-            opacity: 0.9;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 32px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-        }
-
-        .btn-playstore {
-            background-color: #a4c639;
-            color: white;
-        }
-
-        .btn-steam {
-            background-color: #171a21;
-            color: white;
-        }
-
-        .features {
-            max-width: 1100px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 40px;
-        }
-
-        .grid {
-            display: block;
-            text-align: center;
-        }
-
-        .feature-card {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            margin-bottom: 24px;
-            display: inline-block;
-            width: 100%;
-            max-width: 320px;
-            margin-right: 15px;
-            margin-left: 15px;
-            vertical-align: top;
-            text-align: left;
-        }
-
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-            color: var(--accent-primary);
-        }
-
-        .social-section {
-            text-align: center;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .social-section h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-
-		.social {
-			list-style: none;
-			display: flex;
-			justify-content: center;
-			gap: 20px;
-			flex-wrap: wrap;
-		}
-
-		.social li a {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 50px;
-			height: 50px;
-			background-color: var(--card-bg);
-			border-radius: 50%;
-			color: var(--text-color);
-			text-decoration: none;
-			box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-			transition: all 0.2s ease;
-		}
-
-		/* Das sorgt dafür, dass das Icon im Kreis zentriert ist */
-		.social li a i {
-			font-size: 22px;
-		}
-
-		.social li a:hover {
-			background-color: var(--accent-primary);
-			color: white;
-			transform: scale(1.1);
-		}
-
-		.social li .label {
-			display: none;
-		}
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #e2e8f0;
-            color: #64748b;
-            font-size: 14px;
-            margin-top: 60px;
-        }
-
-        footer a {
-            color: var(--accent-primary);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-	<header>
-		<a href="#" class="logo-container">
-			<img src="assets/logo.png" alt="Cubalance Logo" class="site-logo">
-		</a>
-	</header>
+    <header>
+        <div class="nav-container">
+            <a href="index.html"><img src="assets/logo.png" alt="Cubalance" class="site-logo"></a>
+            <nav>
+                <a href="devlog.html">Devlog</a>
+                <a href="roadmap.html">Roadmap</a>
+                <a href="hints.html">Hints</a>
+                <a href="leaderboard.html">Leaderboards</a>
+                <a href="de.html" class="lang-switch">DE</a>
+            </nav>
+        </div>
+    </header>
 
-    <main>
-        <section class="hero">
-            <h1>Color Matching is Only Half the Battle!</h1>
-            <p>Every cube carries a physical weight landing on shifting scales. Manage the momentum, utilize chain reactions, and challenge your reflexes before the floor completely tips over!</p>
+    <div class="main-container">
+        <div class="content-card">
+            <h1>Color Matching Meets Scale Physics</h1>
+            <p>Welcome to Cubalance! Every cube dropped carries weight that actively tilts the scales. Manage the physical equilibrium, use chain reactions, and discover unique chaotic modifiers before your board collapses.</p>
             
-            <!FOR A PICTURE>
-			<!div class="media-placeholder">
-                <![ADD PICTURE OR VIDEOLOOP HERE]>
-            <!/div>
-        </section>
-
-        <section class="store-section">
-            <h2>Get Ready to Balance the Scales</h2>
-            <p>Cubalance Light officially launches on mobile this Sunday, May 24th! Pre-register now to claim your exclusive rewards.</p>
-            <div class="btn-container">
+            <div class="store-badges">
                 <a class="btn btn-playstore" href="https://play.google.com/store/apps/details?id=com.sherlocklini.cubulance" target="_blank">
                     <i class="fab fa-google-play"></i> Google Play Store
                 </a>
@@ -307,40 +38,17 @@
                     <i class="fab fa-steam"></i> Wishlist on Steam
                 </a>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section class="features">
-            <h2>Game Features</h2>
-            <div class="grid">
-                <div class="feature-card">
-                    <h3>Scale Physics</h3>
-                    <p>Static grids are gone. Every dropped unit affects the equilibrium. Balance carefully or purposely tip items to launch structural chain reactions.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Chaotic Modifiers</h3>
-                    <p>Deal with unique cast elements like zero-gravity Feather blocks, destructive volatile Mines, or the monochrome threat of Mr. Grey.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>No Forced Ads</h3>
-                    <p>Enjoy pures, uninterrupted retro gameplay. Play seamlessly at your own pace without annoying interruptions.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="social-section">
-            <h2>Join the Community</h2>
-            <ul class="social">
-				<li><a href="https://www.instagram.com/sherlocklini" target="_blank"><i class="fab fa-instagram"></i><span class="label">Instagram</span></a></li>
-				<li><a href="https://www.tiktok.com/sherlocklini" target="_blank"><i class="fab fa-tiktok"></i><span class="label">TikTok</span></a></li>
-				<li><a href="https://discord.gg/hWBFEauwWx" target="_blank"><i class="fab fa-discord"></i><span class="label">Discord</span></a></li>
-				<li><a href="https://www.youtube.com/sherlocklini4115" target="_blank"><i class="fab fa-youtube"></i><span class="label">YouTube</span></a></li>
-			</ul>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Sherlocklini Games. All rights reserved. Built with Godot Engine.</p>
-        <p style="margin-top: 10px;"><a href="privacy.html">Privacy Policy (Datenschutzerklärung)</a></p>
+    <footer class="social-footer">
+        <ul class="social-links">
+            <li><a href="https://www.instagram.com/sherlocklini" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.tiktok.com/sherlocklini" target="_blank"><i class="fab fa-tiktok"></i></a></li>
+            <li><a href="https://discord.gg/hWBFEauwWx" target="_blank"><i class="fab fa-discord"></i></a></li>
+            <li><a href="https://www.youtube.com/sherlocklini4115" target="_blank"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+        <p>&copy; 2026 Sherlocklini Games. Built with Godot. <a href="privacy.html">Privacy Policy</a></p>
     </footer>
 
 </body>
