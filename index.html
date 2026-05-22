@@ -51,12 +51,29 @@
             z-index: 100;
         }
 
-        .logo {
-            font-size: 28px;
-            color: var(--accent-primary);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
+		header {
+			background-color: var(--card-bg);
+			padding: 15px 40px; /* Slightly reduced padding to match an image logo */
+			box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+			display: flex;
+			justify-content: flex-start; /* Aligns the logo neatly to the left side */
+			align-items: center;
+			position: sticky;
+			top: 0;
+			z-index: 100;
+		}
+
+		.logo-container {
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+		}
+
+		.site-logo {
+			height: 50px; /* Restricts height to keep the header compact */
+			width: auto;   /* Ensures the logo maintains its correct aspect ratio */
+			display: block;
+		}
 
         .hero {
             max-width: 1200px;
@@ -262,10 +279,11 @@
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo">Cubalance</a>
-        <div>by Sherlocklini</div>
-    </header>
+	<header>
+		<a href="#" class="logo-container">
+			<img src="logo.png" alt="Cubalance Logo" class="site-logo">
+		</a>
+	</header>
 
     <main>
         <section class="hero">
